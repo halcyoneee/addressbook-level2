@@ -114,7 +114,7 @@ Deletes the 1st person in the results of the `find` command.
 == Deleting multiple persons : `deletemulti`
 
 Deletes the specified list of persons from the address book. Irreversible. +
-Format: `deletemulti INDEX`
+Format: `deletemulti [INDEX]...`
 
 ****
 Deletes the person at the specified `INDEX`.

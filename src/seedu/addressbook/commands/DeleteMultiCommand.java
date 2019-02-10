@@ -12,7 +12,7 @@ public class DeleteMultiCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes multiple persons identified by the index number used in the last person listing.\n"
-            + "Parameters: INDEX\n"
+            + "Parameters: [INDEX]...\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons:\n%1$s";
