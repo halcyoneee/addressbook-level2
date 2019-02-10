@@ -290,6 +290,54 @@
 || 
 || 2 persons listed!
 || ===================================================
+|| Enter command: || [Command entered:  add Charlie Dickson p/444444 pe/dickson@nus.edu.sg a/444, delta street t/friends]
+|| New person added: Charlie Dickson Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+|| ===================================================
+|| Enter command: || [Command entered:  find Betsy Dickson Charlie]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 	2. Dickson Ee Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 	3. Charlie Dickson Phone: 444444 Address: 444, delta street Tags: [friends]
+|| 
+|| 3 persons listed!
+|| ===================================================
+|| Enter command: || [Command entered:  deletemulti]
+|| Invalid command format! 
+|| deletemulti: Deletes multiple persons identified by the index number used in the last person listing.
+|| Parameters: INDEX
+|| Example: deletemulti 1 2
+|| ===================================================
+|| Enter command: || [Command entered:  deletemulti should only be number]
+|| Invalid command format! 
+|| deletemulti: Deletes multiple persons identified by the index number used in the last person listing.
+|| Parameters: INDEX
+|| Example: deletemulti 1 2
+|| ===================================================
+|| Enter command: || [Command entered:  deletemulti -1]
+|| Invalid command format! 
+|| deletemulti: Deletes multiple persons identified by the index number used in the last person listing.
+|| Parameters: INDEX
+|| Example: deletemulti 1 2
+|| ===================================================
+|| Enter command: || [Command entered:  deletemulti 0]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  deletemulti 5]
+|| The person index provided is invalid
+|| ===================================================
+|| Enter command: || [Command entered:  deletemulti 2 3]
+|| Deleted Persons:
+||  Charlie Dickson Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+||  Dickson Ee Phone: 444444 Email: (private) dickson@nus.edu.sg Address: 444, delta street Tags: [friends]
+|| 
+|| ===================================================
+|| Enter command: || [Command entered:  deletemulti 2 3]
+|| Person could not be found in address book
+|| ===================================================
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo Tags: [secretive]
+|| 
+|| 1 persons listed!
+|| ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!
 || ===================================================
