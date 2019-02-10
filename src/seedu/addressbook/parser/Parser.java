@@ -3,6 +3,7 @@ package seedu.addressbook.parser;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -81,7 +82,7 @@ public class Parser {
             return prepareDelete(arguments);
 
         case DeleteMultiCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return prepareDeleteMulti(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -179,6 +180,32 @@ public class Parser {
     }
 
     /**
+     * Parses arguments in the context of the delete multiple persons command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareDeleteMulti(String args) {
+        try {
+            final String[] targetIndices = parseArgsAsDisplayedIndices(args);
+            ArrayList<Integer> parseIndices = new ArrayList<>();
+            for (String index:targetIndices){
+                parseIndices.add(Integer.parseInt(index));
+            }
+
+            ArrayList<Integer> sortedDescIndices = parseIndices;
+            Collections.sort(sortedDescIndices);
+            Collections.reverse(sortedDescIndices);
+
+            return new DeleteMultiCommand(sortedDescIndices);
+        } catch (ParseException pe) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMultiCommand.MESSAGE_USAGE));
+        } catch (NumberFormatException nfe) {
+            return new IncorrectCommand(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+    }
+
+    /**
      * Parses arguments in the context of the view command.
      *
      * @param args full command args string
@@ -230,6 +257,25 @@ public class Parser {
             throw new ParseException("Could not find index number to parse");
         }
         return Integer.parseInt(matcher.group("targetIndex"));
+    }
+
+    /**
+     * Parses the given arguments string as a list of index numbers.
+     *
+     * @param args arguments string to parse as a list of index numbers
+     * @return the parsed list of index numbers
+     * @throws ParseException if no region of the args string could be found for the index
+     * @throws NumberFormatException the args string region is not a valid number
+     */
+    private String[] parseArgsAsDisplayedIndices(String args) throws ParseException, NumberFormatException {
+        final String[] extractedIndices = args.trim().split(" ");
+        for (String index: extractedIndices) {
+            if (!index.matches("\\d+")){
+                throw new ParseException("Could not find index number to parse");
+            }
+        }
+
+        return extractedIndices;
     }
 
 
