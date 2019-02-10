@@ -16,6 +16,7 @@ import seedu.addressbook.commands.AddCommand;
 import seedu.addressbook.commands.ClearCommand;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.DeleteCommand;
+import seedu.addressbook.commands.DeleteMultiCommand;
 import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
@@ -111,6 +112,27 @@ public class ParserTest {
         final String input = "delete " + testIndex;
         final DeleteCommand result = parseAndAssertCommandType(input, DeleteCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);
+    }
+
+    @Test
+    public void parse_deletemultiCommandNoArgs_errorMessage() {
+        final String[] inputs = { "deletemulti", "deletemulti " };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMultiCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_deletemultiCommandArgsIsNotNumber_errorMessage() {
+        final String[] inputs = { "deletemulti notAnumber ", "deletemulti 8*wh12"};
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMultiCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_deletemultiCommandNumericArg_indexParsedCorrectly() {
+        final String input = "deletemulti 1 2" ;
+        final DeleteMultiCommand result = parseAndAssertCommandType(input, DeleteMultiCommand.class);
+        assertEquals(result.getTargetIndex(), 2);
     }
 
     @Test
