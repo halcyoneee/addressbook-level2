@@ -17,8 +17,7 @@ public class DeleteMultiCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons:\n%1$s";
 
-    private static final String MESSAGE_DELETE_PERSON_FAIL = "The person index %1$s provided is invalid";
-    private static final String MESSAGE_PERSON_NOT_IN_ADDRESSBOOK = "The person index %1$s provided is invalid";
+    public static final String MESSAGE_PERSON_NOT_IN_ADDRESSBOOK = "The person index %1$s provided is invalid";
 
     private final ArrayList<Integer> targetIndices;
 
@@ -36,7 +35,6 @@ public class DeleteMultiCommand extends Command {
                 ReadOnlyPerson target = getTargetPerson();
                 addressBook.removePerson(target);
                 outputTargets += " " + target + "\n";
-                new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
             }
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, outputTargets));
 
@@ -44,7 +42,7 @@ public class DeleteMultiCommand extends Command {
         } catch (IndexOutOfBoundsException ie) {
             if (!outputTargets.isEmpty()) {
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, outputTargets) +
-                    "\n" + String.format(MESSAGE_DELETE_PERSON_FAIL, getTargetIndex()));
+                    "\n" + String.format(MESSAGE_PERSON_NOT_IN_ADDRESSBOOK, getTargetIndex()));
             }
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } catch (UniquePersonList.PersonNotFoundException pnfe) {
